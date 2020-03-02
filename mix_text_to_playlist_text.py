@@ -4,12 +4,17 @@ import re
 
 lines=list()
 for line in fileinput.FileInput("playlist.txt",inplace=1):
-        if line.rstrip():
           line = re.sub("\d+", "", line)
           line = re.sub(":\n","",line)
           line = re.sub("NOW PLAYING\n","",line)
           line = re.sub("▶\n","",line)
+          if line == '\n':
+           None 
+          else:
+            line = line[:-1] 
           lines.append(line)
+          
+  
 
 with open("playlist.txt", "w") as f:
       i = 0 
@@ -18,3 +23,4 @@ with open("playlist.txt", "w") as f:
         f.write(lines[i]+lines[j])
         i+=2
         j+=2
+print(lines)
